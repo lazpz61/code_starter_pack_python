@@ -1,6 +1,6 @@
 import os
 import urllib.parse as up
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 import psycopg2
@@ -116,7 +116,9 @@ def get_equipment():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
+@app.route('/', methods=["GET"])
+def home():
+    return render_template('index.html')
 
 
 
